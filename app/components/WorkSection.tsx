@@ -60,22 +60,23 @@ export default function WorkSection() {
         </h2>
 
         <div className="relative">
-          {/* Center vertical line */}
-          <div className="absolute left-1/2 top-0 -ml-0.5 h-full w-1 bg-gray-600"></div>
+          {/* Vertical line (left on mobile, center on desktop) */}
+          <div className="absolute left-6 sm:left-1/2 top-0 h-full w-1 bg-gray-600 -translate-x-1/2"></div>
 
           {experiences.map((experience, index) => (
             <div
               key={index}
-              className="mb-12 flex justify-between items-center w-full"
+              className="mb-12 flex flex-col sm:flex-row sm:justify-between sm:items-center w-full"
             >
+              {/* Desktop alternating */}
               {index % 2 === 0 ? (
                 <>
-                  {/* Left card */}
-                  <div className="w-5/12 bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-gray-200">
+                  {/* Left card (desktop), right card (mobile) */}
+                  <div className="sm:w-5/12 sm:bg-gray-700 sm:p-6 sm:rounded-lg sm:shadow-sm sm:hover:shadow-md sm:transition-shadow sm:text-gray-200 sm:block hidden">
                     <h3 className="text-lg font-semibold text-white">
                       {experience.title}
                     </h3>
-                    <p className="text-sm text-indigo-400">
+                    <p className="text-sm text-blue-400">
                       {experience.company}
                     </p>
                     <p className="text-xs text-gray-400 mb-3">
@@ -87,21 +88,26 @@ export default function WorkSection() {
                       ))}
                     </ul>
                   </div>
-                  {/* Timeline dot */}
-                  <div className="z-10 flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 border-4 border-gray-800"></div>
-                  <div className="w-5/12"></div>
+
+                  {/* Dot */}
+                  <div className="z-10 flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 border-4 border-gray-800 sm:mx-0 mx-2"></div>
+
+                  {/* Spacer (desktop only) */}
+                  <div className="sm:w-5/12 hidden sm:block"></div>
                 </>
               ) : (
                 <>
-                  <div className="w-5/12"></div>
-                  {/* Timeline dot */}
-                  <div className="z-10 flex items-center justify-center w-8 h-8 rounded-full bg-indigo-600 border-4 border-gray-800"></div>
-                  {/* Right card */}
-                  <div className="w-5/12 bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-gray-200">
+                  <div className="sm:w-5/12 hidden sm:block"></div>
+
+                  {/* Dot */}
+                  <div className="z-10 flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 border-4 border-gray-800 sm:mx-0 mx-2"></div>
+
+                  {/* Right card (desktop), right card (mobile) */}
+                  <div className="sm:w-5/12 sm:bg-gray-700 sm:p-6 sm:rounded-lg sm:shadow-sm sm:hover:shadow-md sm:transition-shadow sm:text-gray-200 sm:block hidden">
                     <h3 className="text-lg font-semibold text-white">
                       {experience.title}
                     </h3>
-                    <p className="text-sm text-indigo-400">
+                    <p className="text-sm text-blue-400">
                       {experience.company}
                     </p>
                     <p className="text-xs text-gray-400 mb-3">
@@ -115,6 +121,22 @@ export default function WorkSection() {
                   </div>
                 </>
               )}
+
+              {/* Mobile version: always right-aligned card */}
+              <div className="ml-14 sm:hidden bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow text-gray-200 mt-4">
+                <h3 className="text-lg font-semibold text-white">
+                  {experience.title}
+                </h3>
+                <p className="text-sm text-blue-400">{experience.company}</p>
+                <p className="text-xs text-gray-400 mb-3">
+                  {experience.startDate} – {experience.endDate}
+                </p>
+                <ul className="list-disc list-inside space-y-1 text-sm">
+                  {experience.projects.map((project, i) => (
+                    <li key={i}>{project}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
