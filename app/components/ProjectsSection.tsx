@@ -33,6 +33,14 @@ const projects: project[] = [
     image: "/name_gen.png",
   },
   {
+    title: "Statblock Generator",
+    description:
+      "Create custom stat blocks for D&D monsters, written in TypeScript with AWS Lambdas",
+    buttonText: "Coming Soon",
+    link: "#",
+    image: "/statblock.png",
+  },
+  {
     title: "D&D Combat Manager",
     description: "Roll dice and handle conditions for dozens of characters",
     buttonText: "Coming Soon",
